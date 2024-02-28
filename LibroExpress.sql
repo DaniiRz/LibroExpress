@@ -3,7 +3,7 @@ CREATE DATABASE LibroExpress;
 USE LibroExpress;
 
 CREATE TABLE tb_clientes (
-  id_cliente INT PRIMARY KEY ,
+  id_cliente VARCHAR(36) PRIMARY KEY ,
   nombre_cliente VARCHAR(50) NOT NULL,
   email_cliente VARCHAR(100) NOT NULL,
   telefono VARCHAR(10) NOT NULL
@@ -24,8 +24,8 @@ END //
 DELIMITER ;
 
 CREATE TABLE tb_prestamos (
-  id_prestamo INT PRIMARY KEY ,
-  id_cliente INT NOT NULL,
+  id_prestamo VARCHAR(36) PRIMARY KEY ,
+  id_cliente VARCHAR(36) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_devolucion DATE NOT NULL,
   estado ENUM('Activo', 'Inactivo') NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE tb_prestamos (
 DELIMITER //
 
 CREATE PROCEDURE InsertarPrestamo(
-  IN p_id_cliente INT,
+  IN p_id_cliente VARCHAR(36),
   IN p_fecha_inicio DATE,
   IN p_fecha_devolucion DATE,
   IN p_estado ENUM('Activo', 'Inactivo')
@@ -50,7 +50,7 @@ END //
 DELIMITER ;
 
 CREATE TABLE tb_generos_libros (
-  id_genero_libro INT PRIMARY KEY ,
+  id_genero_libro VARCHAR(36) PRIMARY KEY ,
   nombre_genero_libro VARCHAR(50) NOT NULL
 );
 
@@ -67,10 +67,10 @@ END //
 DELIMITER ;
 
 CREATE TABLE tb_libros (
-  id_libro INT PRIMARY KEY ,
+  id_libro VARCHAR(36) PRIMARY KEY ,
   titulo_libro VARCHAR(50) NOT NULL,
   anio_publicacion INT NOT NULL,
-  id_genero_libro INT NOT NULL,
+  id_genero_libro VARCHAR(36) NOT NULL,
   estado ENUM('Disponible', 'Prestado') NOT NULL,
   CONSTRAINT fk_libro_genero
     FOREIGN KEY (id_genero_libro) REFERENCES tb_generos_libros(id_genero_libro)
@@ -82,7 +82,7 @@ DELIMITER //
 CREATE PROCEDURE InsertarLibro(
   IN p_titulo_libro VARCHAR(50),
   IN p_anio_publicacion INT,
-  IN p_id_genero_libro INT,
+  IN p_id_genero_libro VARCHAR(36),
   IN p_estado ENUM('Disponible', 'Prestado')
 )
 BEGIN
@@ -93,9 +93,9 @@ END //
 DELIMITER ;
 
 CREATE TABLE tb_detalles_prestamos (
-  id_detalle_prestamo INT PRIMARY KEY ,
-  id_prestamo INT NOT NULL,
-  id_libro INT NOT NULL,
+  id_detalle_prestamo VARCHAR(36) PRIMARY KEY ,
+  id_prestamo VARCHAR(36) NOT NULL,
+  id_libro VARCHAR(36) NOT NULL,
   CONSTRAINT fk_detalle_prestamo
     FOREIGN KEY (id_prestamo) REFERENCES tb_prestamos(id_prestamo)
     ON DELETE CASCADE ON UPDATE CASCADE,
@@ -107,8 +107,8 @@ CREATE TABLE tb_detalles_prestamos (
 DELIMITER //
 
 CREATE PROCEDURE InsertarDetallePrestamo(
-  IN p_id_prestamo INT,
-  IN p_id_libro INT
+  IN p_id_prestamo VARCHAR(36),
+  IN p_id_libro VARCHAR(36)
 )
 BEGIN
   INSERT INTO tb_detalles_prestamos (id_detalle_prestamo, id_prestamo, id_libro)
