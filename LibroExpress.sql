@@ -218,10 +218,6 @@ END //
 DELIMITER ;
 
 
---- drop solo para prueba---
-
-DROP PROCEDURE IF EXISTS AgregarDetallesPrestamo;
-
 
 CALL AgregarDetallesPrestamo('John Doe', '1984');
 CALL AgregarDetallesPrestamo('Jane Smith', 'El código Da Vinci');
@@ -249,3 +245,6 @@ SELECT * FROM tb_generos_libros
 SELECT * FROM tb_libros 
 
 SELECT * FROM tb_prestamos
+
+
+
