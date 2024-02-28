@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS LibroExpress;
+
 CREATE DATABASE LibroExpress;
 USE LibroExpress;
 
@@ -131,15 +132,14 @@ SELECT * FROM tb_prestamos;
  
 /* Proceso de almacenamiento de la tabla generos_libros*/
 DELIMITER //
- 
+
 CREATE PROCEDURE AgregarGeneroLibro(nombre_genero_libro VARCHAR(50))
 BEGIN
- 
     INSERT INTO tb_generos_libros(nombre_genero_libro) VALUES (nombre_genero_libro);
- 
 END //
- 
-DELIMITER;
+
+DELIMITER ;
+
 
 CALL AgregarGeneroLibro('Ciencia ficción');
 CALL AgregarGeneroLibro('Romance');
@@ -179,7 +179,7 @@ DELIMITER ;
 CALL AgregarLibro('1984', 1949, 'Ciencia ficción', 'Disponible');
 CALL AgregarLibro('Orgullo y prejuicio', 1813, 'Romance', 'Disponible');
 CALL AgregarLibro('El código Da Vinci', 2003, 'Misterio', 'Disponible');
-CALL AgregarLibro('La odisea',  Homer, 'Aventura', 'Disponible');
+CALL AgregarLibro('La odisea', 'Homero', 'Aventura', 'Disponible');
 CALL AgregarLibro('El señor de los anillos', 1954, 'Fantasía', 'Disponible');
 CALL AgregarLibro('Romeo y Julieta', 1597, 'Drama', 'Disponible');
 CALL AgregarLibro('El silencio de los corderos', 1988, 'Thriller', 'Disponible');
@@ -208,14 +208,20 @@ BEGIN
     -- Encierra la consulta SELECT entre paréntesis
    SET cliente_id = (SELECT id_cliente FROM tb_clientes WHERE nombre_cliente = nombre_cliente LIMIT 1);
    SET prestamo_id = (SELECT id_prestamo FROM tb_prestamos WHERE id_cliente = cliente_id LIMIT 1);
-   SET libros_id = (SELECT id_libros FROM tb_libros WHERE titulo_libro = tituloLibro LIMIT 1);
+   SET libros_id = (SELECT id_libro FROM tb_libros WHERE titulo_libro = tituloLibro LIMIT 1);
 
  
-   INSERT INTO tb_detalles_prestamos(id_prestamo, id_libros) VALUES (prestamo_id, libros_id);
+   INSERT INTO tb_detalles_prestamos(id_prestamo, id_libro) VALUES (prestamo_id, libros_id);
  
 END //
  
 DELIMITER ;
+
+
+--- drop solo para prueba---
+
+DROP PROCEDURE IF EXISTS AgregarDetallesPrestamo;
+
 
 CALL AgregarDetallesPrestamo('John Doe', '1984');
 CALL AgregarDetallesPrestamo('Jane Smith', 'El código Da Vinci');
@@ -232,3 +238,14 @@ CALL AgregarDetallesPrestamo('Isabella Gonzalez', 'El silencio de los corderos')
 CALL AgregarDetallesPrestamo('Ethan Perez', 'Los juegos del hambre');
 CALL AgregarDetallesPrestamo('Ava Torres', 'Crónica de una muerte anunciada');
 CALL AgregarDetallesPrestamo('James Flores', 'Moby Dick');
+
+
+SELECT * FROM tb_clientes
+
+SELECT * FROM tb_detalles_prestamos 
+
+SELECT * FROM tb_generos_libros 
+
+SELECT * FROM tb_libros 
+
+SELECT * FROM tb_prestamos
