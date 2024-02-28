@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS LibroExpress;
+
 CREATE DATABASE LibroExpress;
 USE LibroExpress;
 
@@ -9,6 +10,7 @@ CREATE TABLE tb_clientes (
   telefono VARCHAR(10) NOT NULL
 );
 
+---- procedimiento para insertar clientes junto con la funcion UUID
 DELIMITER //
 
 CREATE PROCEDURE InsertarCliente(
@@ -23,6 +25,8 @@ END //
 
 DELIMITER ;
 
+
+
 CREATE TABLE tb_prestamos (
   id_prestamo VARCHAR(36) PRIMARY KEY ,
   id_cliente VARCHAR(36) NOT NULL,
@@ -33,6 +37,9 @@ CREATE TABLE tb_prestamos (
     FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+---- procedimiento para insertar prestamo junto con la funcion UUID
 
 DELIMITER //
 
@@ -49,11 +56,16 @@ END //
 
 DELIMITER ;
 
+
+
 CREATE TABLE tb_generos_libros (
   id_genero_libro VARCHAR(36) PRIMARY KEY ,
   nombre_genero_libro VARCHAR(50) NOT NULL
 );
 
+
+
+---- procedimiento para insertar u  nuevo genero junto con la funcion UUID
 DELIMITER //
 
 CREATE PROCEDURE InsertarGeneroLibro(
@@ -66,6 +78,8 @@ END //
 
 DELIMITER ;
 
+
+
 CREATE TABLE tb_libros (
   id_libro VARCHAR(36) PRIMARY KEY ,
   titulo_libro VARCHAR(50) NOT NULL,
@@ -76,6 +90,9 @@ CREATE TABLE tb_libros (
     FOREIGN KEY (id_genero_libro) REFERENCES tb_generos_libros(id_genero_libro)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+---- procedimiento para insertar un nuevo libro junto con la funcion UUID
 
 DELIMITER //
 
@@ -92,6 +109,8 @@ END //
 
 DELIMITER ;
 
+
+
 CREATE TABLE tb_detalles_prestamos (
   id_detalle_prestamo VARCHAR(36) PRIMARY KEY ,
   id_prestamo VARCHAR(36) NOT NULL,
@@ -103,6 +122,10 @@ CREATE TABLE tb_detalles_prestamos (
     FOREIGN KEY (id_libro) REFERENCES tb_libros(id_libro)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+
+---- procedimiento para insertar un detalle de pedido junto con la funcion UUID
 
 DELIMITER //
 
@@ -117,7 +140,10 @@ END //
 
 DELIMITER ;
 
-/*Trigger*/
+
+
+-- trigger de cambio de estado al prestar un libro
+
 DELIMITER //
 CREATE TRIGGER actualizar_estado_libro
 AFTER INSERT ON tb_detalles_prestamos
@@ -128,6 +154,62 @@ BEGIN
     WHERE id_libro = NEW.id_libro;
 END //
 DELIMITER ;
+
+
+
+--- inserciones con prodceimiento en la tabla clientes 
+
+CALL InsertarCliente('Daniela Ramirez', 'dani@email.com', '12345678'); 
+CALL InsertarCliente('Francisco Ramos', 'frank@email.com', '8563214');
+CALL InsertarCliente('Carlos Quintanilla', 'carlos@email.com', '852369');  
+CALL InsertarCliente('Ana García', 'ana.garcia@example.com', '123456789');
+
+CALL InsertarCliente('Juan Rodríguez', 'juan.rodriguez@example.com', '987654321');
+CALL InsertarCliente('María López', 'maria.lopez@example.com', '555555555');
+CALL InsertarCliente('Antonio Martínez', 'antonio.martinez@example.com', '111111111');
+CALL InsertarCliente('Laura Fernández', 'laura.fernandez@example.com', '999999999');
+
+CALL InsertarCliente('Carlos Sánchez', 'carlos.sanchez@example.com', '777777777');
+CALL InsertarCliente('Sara Ramírez', 'sara.ramirez@example.com', '444444444');
+CALL InsertarCliente('Pedro Torres', 'pedro.torres@example.com', '888888888');
+CALL InsertarCliente('Isabel Gómez', 'isabel.gomez@example.com', '222222222');
+
+CALL InsertarCliente('Luis Morales', 'luis.morales@example.com', '666666666');
+CALL InsertarCliente('Marta Jiménez', 'marta.jimenez@example.com', '333333333');
+CALL InsertarCliente('Javier Ruiz', 'javier.ruiz@example.com', '555555555');
+
+
+
+SELECT * FROM tb_clientes
+
+
+
+
+
+--- inserciones con prodcimiento en la tabla prestamos 
+
+CALL InsertarPrestamo('aba40574-d659-11ee-bb52-b04f1304b695','2024-01-01', '2024-01-15', 'activo');
+CALL InsertarPrestamo('ce2d87e4-d65a-11ee-bb52-b04f1304b695','2024-02-01', '2024-02-15', 'inactivo');
+CALL InsertarPrestamo('ce2e61d3-d65a-11ee-bb52-b04f1304b695','2024-03-01', '2024-03-15', 'activo');
+CALL InsertarPrestamo('ce2f1fbd-d65a-11ee-bb52-b04f1304b695','2024-04-01', '2024-04-15', 'inactivo');
+
+CALL InsertarPrestamo('ce2febdc-d65a-11ee-bb52-b04f1304b695','2024-05-01', '2024-05-15', 'activo');
+CALL InsertarPrestamo('ce30928f-d65a-11ee-bb52-b04f1304b695','2024-06-01', '2024-06-15', 'inactivo');
+CALL InsertarPrestamo('ce31c7a9-d65a-11ee-bb52-b04f1304b695','2024-09-07', '2024-10-15', 'activo');
+CALL InsertarPrestamo('ce3384f8-d65a-11ee-bb52-b04f1304b695','2024-03-07', '2024-3-15', 'activo');
+
+CALL InsertarPrestamo('ce340ac7-d65a-11ee-bb52-b04f1304b695','2024-12-07', '2024-03-15', 'activo');
+CALL InsertarPrestamo('ce349418-d65a-11ee-bb52-b04f1304b695','2024-23-07', '2024-6-15', 'activo');
+CALL InsertarPrestamo('ce351264-d65a-11ee-bb52-b04f1304b695','2024-12-07', '2024-6-15', 'inactivo');
+CALL InsertarPrestamo('ce358f28-d65a-11ee-bb52-b04f1304b695','2024-05-07', '2024-03-15', 'inactivo');
+
+CALL InsertarPrestamo('ce3609d4-d65a-11ee-bb52-b04f1304b695','2024-12-01', '2024-12-15', 'inactivo');
+CALL InsertarPrestamo('e6f7ee12-d659-11ee-bb52-b04f1304b695','2025-03-01', '2025-03-15', 'inactivo');
+CALL InsertarPrestamo('e6f8cdc4-d659-11ee-bb52-b04f1304b695','2024-08-01', '2024-08-15', 'activo');
+
+
+SELECT * FROM tb_prestamos
+
 
 /*tb Generos Libro*/
 CALL InsertarGeneroLibro('Ficción');
@@ -182,3 +264,8 @@ CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d
 CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
 CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
 CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+
+
+
+
+
