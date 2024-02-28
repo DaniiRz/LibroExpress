@@ -62,7 +62,7 @@ DELIMITER ;
 /* Proceso de almacenamiento de la tabla clientes*/
 DELIMITER //
  
-CREATE PROCEDURE AgregarCliente(nombre_cliente VARCHAR(50), email_cliente VARCHAR(100), telefono VARCHAR(10))
+CREATE PROCEDURE agregar_cliente(nombre_cliente VARCHAR(50), email_cliente VARCHAR(100), telefono VARCHAR(10))
 BEGIN
  
     INSERT INTO tb_clientes(nombre_cliente, email_cliente, telefono) VALUES (nombre_cliente, email_cliente, telefono);
@@ -74,7 +74,7 @@ DELIMITER ;
 /* Proceso de almacenamiento de la tabla prestamos*/
 DELIMITER //
  
-CREATE PROCEDURE AgregarPrestamo(nombreCliente VARCHAR(50), fecha_inicio DATE, fecha_devolucion DATE, estado ENUM('Activo','Inactivo'))
+CREATE PROCEDURE agregar_prestamo(nombreCliente VARCHAR(50), fecha_inicio DATE, fecha_devolucion DATE, estado ENUM('Activo','Inactivo'))
 BEGIN
     DECLARE cliente_id BINARY(36);
     -- Encierra la consulta SELECT entre paréntesis
@@ -87,7 +87,7 @@ DELIMITER ;
 /* Proceso de almacenamiento de la tabla generos_libros*/
 DELIMITER //
 
-CREATE PROCEDURE AgregarGeneroLibro(nombre_genero_libro VARCHAR(50))
+CREATE PROCEDURE agregar_genero_libro(nombre_genero_libro VARCHAR(50))
 BEGIN
     INSERT INTO tb_generos_libros(nombre_genero_libro) VALUES (nombre_genero_libro);
 END //
@@ -97,7 +97,7 @@ DELIMITER ;
 /* Proceso de almacenamiento de la tabla Libro*/
 DELIMITER //
  
-CREATE PROCEDURE AgregarLibro(titulo_libro VARCHAR(50), anio_publicacion INT, NombreGenero VARCHAR(50), estado ENUM('Disponible','Prestado'))
+CREATE PROCEDURE agregar_libro(titulo_libro VARCHAR(50), anio_publicacion INT, NombreGenero VARCHAR(50), estado ENUM('Disponible','Prestado'))
 BEGIN
 	DECLARE generoLibro_id BINARY(36);
     -- Encierra la consulta SELECT entre paréntesis
@@ -112,7 +112,7 @@ DELIMITER ;
 /* Proceso de almacenamiento de la tabla detalles_prestamo*/
 DELIMITER //
  
-CREATE PROCEDURE AgregarDetallesPrestamo(nombre_cliente VARCHAR(50), tituloLibro VARCHAR(100))
+CREATE PROCEDURE agregar_detalles_prestamo(nombre_cliente VARCHAR(50), tituloLibro VARCHAR(100))
 BEGIN
 	DECLARE cliente_id BINARY(36);
 	DECLARE prestamo_id BINARY(36);
