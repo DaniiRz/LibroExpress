@@ -128,3 +128,57 @@ BEGIN
     WHERE id_libro = NEW.id_libro;
 END //
 DELIMITER ;
+
+/*tb Generos Libro*/
+CALL InsertarGeneroLibro('Ficción');
+CALL InsertarGeneroLibro('Romance');
+CALL InsertarGeneroLibro('Misterio');
+CALL InsertarGeneroLibro('Fantasía');
+CALL InsertarGeneroLibro('Ciencia ficción');
+CALL InsertarGeneroLibro('Histórico');
+CALL InsertarGeneroLibro('Biografía');
+CALL InsertarGeneroLibro('Autoayuda');
+CALL InsertarGeneroLibro('Negocios');
+CALL InsertarGeneroLibro('Arte');
+CALL InsertarGeneroLibro('Cocina');
+CALL InsertarGeneroLibro('Viajes');
+CALL InsertarGeneroLibro('Infantil');
+CALL InsertarGeneroLibro('Poesía');
+CALL InsertarGeneroLibro('Teatro');
+
+
+/*tb Libros*/
+CALL InsertarLibro('1984', 1949, '98c695b8-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Orgullo y prejuicio', 1813, '98c71ddd-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Cien años de soledad', 1967, '98c7ace3-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('El gran Gatsby', 1925, '98c888a9-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Matar a un ruiseñor', 1960, '98c99bac-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Don Quijote de la Mancha', 1605, '98c888a9-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Ulises', 1922, '98c99bac-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('En busca del tiempo perdido', 1913, '98c5cf3a-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('1984', 1949, '98c888a9-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Orgullo y prejuicio', 1813, '98c9e40e-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Cien años de soledad', 1967, '98c888a9-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('El gran Gatsby', 1925, '98ca73ab-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Matar a un ruiseñor', 1960, '98ca73ab-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Don Quijote de la Mancha', 1605, '98c9105a-d65c-11ee-b99f-b04f13083500', 'Disponible');
+CALL InsertarLibro('Ulises', 1922, '98c9105a-d65c-11ee-b99f-b04f13083500', 'Disponible');
+
+
+/*tb Detalle Prestamos*/
+CALL InsertarDetallePrestamo('98c9105a-d65c-11ee-b99f-b04f13083500', '98c9105a-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
+CALL InsertarDetallePrestamo('98c9e40e-d65c-11ee-b99f-b04f13083500', '98c99bac-d65c-11ee-b99f-b04f13083500');
