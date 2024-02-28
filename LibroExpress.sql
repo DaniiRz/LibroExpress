@@ -92,11 +92,6 @@ CALL AgregarCliente('Ethan Perez', 'ethanperez@example.com', '4443332221');
 CALL AgregarCliente('Ava Torres', 'avatorres@example.com', '6667778889');
 CALL AgregarCliente('James Flores', 'jamesflores@example.com', '1119998887');
  
- 
-SELECT * FROM tb_clientes
- 
- 
- 
 /* Proceso de almacenamiento de la tabla prestamos*/
 DELIMITER //
  
@@ -126,10 +121,6 @@ CALL AgregarPrestamo('Ethan Perez', '2024-02-07', '2024-03-07', 'Activo');
 CALL AgregarPrestamo('Ava Torres', '2024-02-27', '2024-03-27', 'Activo');
 CALL AgregarPrestamo('James Flores', '2024-02-14', '2024-03-14', 'Activo');
  
-SELECT * FROM tb_prestamos;
- 
- 
- 
 /* Proceso de almacenamiento de la tabla generos_libros*/
 DELIMITER //
 
@@ -156,10 +147,6 @@ CALL AgregarGeneroLibro('No ficción');
 CALL AgregarGeneroLibro('Poesía');
 CALL AgregarGeneroLibro('Terror');
 CALL AgregarGeneroLibro('Autoayuda');
- 
-SELECT * FROM tb_generos_libros
- 
- 
  
 /* Proceso de almacenamiento de la tabla Libro*/
 DELIMITER //
@@ -191,12 +178,6 @@ CALL AgregarLibro('El principito', 1943, 'Fantasía', 'Disponible');
 CALL AgregarLibro('Drácula', 1897, 'Terror', 'Disponible');
 CALL AgregarLibro('El alquimista', 1988, 'Fantasía', 'Disponible');
 CALL AgregarLibro('El retrato de Dorian Gray', 1890, 'Drama', 'Disponible'); 
-
-SELECT * FROM tb_libros
- 
- 
- 
- 
 /* Proceso de almacenamiento de la tabla clientes*/
 DELIMITER //
  
@@ -233,18 +214,15 @@ CALL AgregarDetallesPrestamo('Andrew Lopez', 'La odisea');
 CALL AgregarDetallesPrestamo('Isabella Gonzalez', 'El silencio de los corderos');
 CALL AgregarDetallesPrestamo('Ethan Perez', 'Los juegos del hambre');
 CALL AgregarDetallesPrestamo('Ava Torres', 'Crónica de una muerte anunciada');
-CALL AgregarDetallesPrestamo('James Flores', 'Moby Dick');
+CALL AgregarDetallesPrestamo('James Flores', 'El retrato de Dorian Gray');
 
 
-SELECT * FROM tb_clientes
+SELECT * FROM tb_clientes;
 
-SELECT * FROM tb_detalles_prestamos 
+SELECT * FROM tb_detalles_prestamos;
 
-SELECT * FROM tb_generos_libros 
+SELECT * FROM tb_generos_libros;
 
-SELECT * FROM tb_libros 
+SELECT * FROM tb_libros;
 
-SELECT * FROM tb_prestamos
-
-
-
+SELECT * FROM tb_prestamos;
